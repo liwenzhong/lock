@@ -5,21 +5,15 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-
     <properties>
         <!--build plugin -->
         <build.helper.maven.plugin.version>1.7</build.helper.maven.plugin.version>
         <maven.jetty.plugin.version>6.1.26</maven.jetty.plugin.version>
     </properties>
+    <profiles>
+    </profiles>
 
     <dependencies>
-        <!--lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.14.8</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>
