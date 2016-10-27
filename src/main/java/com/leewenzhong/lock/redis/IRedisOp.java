@@ -16,6 +16,15 @@ public interface IRedisOp {
 	 * @return
 	 */
 	boolean expire(String key, long time);
-
+ 
+        /**
+	 * get expire time for key
+	 *
+	 * @param key
+	 * @return
+                ttl>0  key exists and has expireTime
+		ttl=-1 key has no expireTime
+		ttl=-2 key does not exist 
+	 */
 	long ttl(String key);
 }
