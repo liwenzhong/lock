@@ -52,6 +52,10 @@ public class SpinLock extends AbstractLock implements Lock{
 			if (threadHolder.compareAndSet(null, Thread.currentThread())) {
 				return true;
 			}
+
+			if (Thread.interrupted()) {
+				throw new InterruptedException();
+			}
 		}
 
 		throw new InterruptedException("wait for lock timeout!");
