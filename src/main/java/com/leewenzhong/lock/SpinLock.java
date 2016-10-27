@@ -31,6 +31,32 @@ public class SpinLock extends AbstractLock implements Lock{
 	}
 
 	/**
+	 * none blocked
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean tryLock() {
+		return threadHolder.compareAndSet(null, Thread.currentThread());
+	}
+
+	@Override
+	public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+		if (time <= 0L || unit == null) {
+			throw new IllegalArgumentException("illegal arg time/unit!");
+		}
+
+		long expireTime = System.currentTimeMillis() + unit.toMillis(time);
+		while (System.currentTimeMillis() - expireTime <= 0) {
+			if (threadHolder.compareAndSet(null, Thread.currentThread())) {
+				return true;
+			}
+		}
+
+		throw new InterruptedException("wait for lock timeout!");
+	}
+
+	/**
 	 * Releases the lock.
 	 * <p>
 	 * <p><b>Implementation Considerations</b>
