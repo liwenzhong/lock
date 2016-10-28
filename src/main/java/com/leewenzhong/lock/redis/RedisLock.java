@@ -19,7 +19,7 @@ public class RedisLock {
 	private static final String UID = genUid();
 
 	/**
-	 * 生成uid， 尽量每台机器不同!!!这里时一个参考实现。
+	 * 生成uid，保证每台机器不同!!!这里是一个简单的参考实现。
 	 *
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class RedisLock {
 		try {
 			return InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
-			return RandomStringUtils.random(8);
+			return RandomStringUtils.randomAlphabetic(4)+RandomStringUtils.random(4) ;
 		}
 	}
 
