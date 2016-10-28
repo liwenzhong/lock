@@ -27,7 +27,7 @@ public class RedisLock {
 		try {
 			return InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
-			return RandomStringUtils.randomAlphabetic(4)+RandomStringUtils.random(4) ;
+			return RandomStringUtils.randomAlphabetic(8)+RandomStringUtils.random(8) ;
 		}
 	}
 
